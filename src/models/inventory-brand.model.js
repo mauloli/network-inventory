@@ -5,17 +5,15 @@ const DataTypes = Sequelize.DataTypes;
 
 module.exports = function (app) {
   const sequelizeClient = app.get('sequelizeClient');
-  const inventory = sequelizeClient.define('inventory', {
-    id: {
-      type: DataTypes.UUID, 
-      primaryKey: true, 
-      defaultValue: Sequelize.UUIDV4, 
+  const inventoryBrand = sequelizeClient.define('inventory_brand', {
+    inventory_id: {
+      type: DataTypes.UUID,
       allowNull: false
     },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
+    brand_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    }
   }, {
     hooks: {
       beforeCount(options) {
@@ -25,10 +23,18 @@ module.exports = function (app) {
   });
 
   // eslint-disable-next-line no-unused-vars
-  inventory.associate = function (models) {
+  inventoryBrand.associate = function (models) {
+    inventoryBrand.belongsTo(models.brand, {
+      foreignKey: 'brand_id',
+      targetKey: 'id'
+    });
+    inventoryBrand.belongsTo(models.inventory, {
+      foreignKey: 'inventory_id',
+      targetKey: 'id'
+    });
     // Define associations here
     // See https://sequelize.org/master/manual/assocs.html
   };
 
-  return inventory;
+  return inventoryBrand;
 };

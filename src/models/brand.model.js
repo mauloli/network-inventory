@@ -5,17 +5,11 @@ const DataTypes = Sequelize.DataTypes;
 
 module.exports = function (app) {
   const sequelizeClient = app.get('sequelizeClient');
-  const inventory = sequelizeClient.define('inventory', {
-    id: {
-      type: DataTypes.UUID, 
-      primaryKey: true, 
-      defaultValue: Sequelize.UUIDV4, 
-      allowNull: false
-    },
+  const brand = sequelizeClient.define('brand', {
     name: {
       type: DataTypes.STRING,
       allowNull: false
-    },
+    }
   }, {
     hooks: {
       beforeCount(options) {
@@ -25,10 +19,10 @@ module.exports = function (app) {
   });
 
   // eslint-disable-next-line no-unused-vars
-  inventory.associate = function (models) {
+  brand.associate = function (models) {
     // Define associations here
     // See https://sequelize.org/master/manual/assocs.html
   };
 
-  return inventory;
+  return brand;
 };
