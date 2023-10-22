@@ -1,3 +1,4 @@
+const generateQrcode = require('../../hooks/generate-qrcode');
 
 
 module.exports = {
@@ -15,7 +16,9 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [
+      generateQrcode()
+    ],
     update: [],
     patch: [],
     remove: []

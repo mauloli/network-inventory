@@ -7,9 +7,9 @@ module.exports = function (app) {
   const sequelizeClient = app.get('sequelizeClient');
   const inventoryBrand = sequelizeClient.define('inventory_brand', {
     id: {
-      type: DataTypes.UUID, 
-      primaryKey: true, 
-      defaultValue: Sequelize.UUIDV4, 
+      type: DataTypes.UUID,
+      primaryKey: true,
+      defaultValue: Sequelize.UUIDV4,
       allowNull: false
     },
     inventory_id: {
@@ -23,6 +23,11 @@ module.exports = function (app) {
     location_id: {
       type: DataTypes.INTEGER,
       allowNull: true
+    },
+    ip: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: '0.0.0.0'
     },
     status: {
       type: DataTypes.INTEGER,

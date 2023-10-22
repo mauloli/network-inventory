@@ -8,8 +8,9 @@ module.exports = function (app) {
   const brand = sequelizeClient.define('brand', {
     name: {
       type: DataTypes.STRING,
-      allowNull: false
-    }
+      allowNull: false,
+      unique: true
+    },
   }, {
     hooks: {
       beforeCount(options) {

@@ -6,15 +6,10 @@ const DataTypes = Sequelize.DataTypes;
 module.exports = function (app) {
   const sequelizeClient = app.get('sequelizeClient');
   const inventory = sequelizeClient.define('inventory', {
-    id: {
-      type: DataTypes.UUID, 
-      primaryKey: true, 
-      defaultValue: Sequelize.UUIDV4, 
-      allowNull: false
-    },
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: true
     },
   }, {
     hooks: {
