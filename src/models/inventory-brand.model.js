@@ -6,6 +6,12 @@ const DataTypes = Sequelize.DataTypes;
 module.exports = function (app) {
   const sequelizeClient = app.get('sequelizeClient');
   const inventoryBrand = sequelizeClient.define('inventory_brand', {
+    id: {
+      type: DataTypes.UUID, 
+      primaryKey: true, 
+      defaultValue: Sequelize.UUIDV4, 
+      allowNull: false
+    },
     inventory_id: {
       type: DataTypes.UUID,
       allowNull: false
@@ -13,6 +19,15 @@ module.exports = function (app) {
     brand_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+    },
+    location_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    status: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0
     }
   }, {
     hooks: {
@@ -30,6 +45,10 @@ module.exports = function (app) {
     });
     inventoryBrand.belongsTo(models.inventory, {
       foreignKey: 'inventory_id',
+      targetKey: 'id'
+    });
+    inventoryBrand.belongsTo(models.location, {
+      foreignKey: 'location_id',
       targetKey: 'id'
     });
     // Define associations here
