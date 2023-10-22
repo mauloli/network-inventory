@@ -9,7 +9,10 @@ module.exports = function (app) {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
+      unique: {
+        args: true,
+        msg: 'item telah terdaftar'
+      }
     },
   }, {
     hooks: {

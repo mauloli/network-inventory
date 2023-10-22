@@ -13,7 +13,7 @@ module.exports = function (app) {
       allowNull: false
     },
     inventory_id: {
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     brand_id: {
