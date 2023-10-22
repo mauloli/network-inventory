@@ -33,6 +33,10 @@ module.exports = function (app) {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 0
+    },
+    qr_image: {
+      type: DataTypes.STRING,
+      allowNull: true
     }
   }, {
     hooks: {
