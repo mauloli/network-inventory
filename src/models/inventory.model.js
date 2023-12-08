@@ -63,14 +63,14 @@ module.exports = function (app) {
   // eslint-disable-next-line no-unused-vars
   inventory.associate = function (models) {
     inventory.belongsTo(models.location, {
-      foreignKe: 'id_location',
+      foreignKey: 'id_location',
       targetKey: 'id'
     });
     inventory.belongsTo(models.devices, {
-      foreignKe: 'id_device',
+      foreignKey: 'id_device',
       targetKey: 'id'
     }); inventory.belongsTo(models.users, {
-      foreignKe: 'id_user',
+      foreignKey: 'id_user',
       targetKey: 'id'
     });
   };
