@@ -7,11 +7,11 @@ const { path } = require('ramda');
 // eslint-disable-next-line no-unused-vars
 module.exports = (options = {}) => {
   return async context => {
-    const isAdmin = path(['params', 'user', 'is_admin']);
+    const roleId = path(['params', 'user', 'id_role']);
 
-    if (!isAdmin(context)) {
+    if (roleId(context) !== 1) {
       throw new errors.NotAcceptable({
-        error_desc:'NOT_ACCEPTABLE',
+        error_desc: 'NOT_ACCEPTABLE',
         message: 'need administration '
       });
     }

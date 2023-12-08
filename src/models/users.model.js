@@ -17,7 +17,7 @@ module.exports = function (app) {
     },
     id_role: {
       type: DataTypes.INTEGER,
-      defaultValue: false,
+      defaultValue: 2,
     }
   }, {
     hooks: {

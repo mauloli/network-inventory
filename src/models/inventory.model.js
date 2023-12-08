@@ -28,7 +28,8 @@ module.exports = function (app) {
     },
     status: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      defaultValue: '0'
     },
     user_modified: {
       type: DataTypes.INTEGER,
@@ -36,7 +37,7 @@ module.exports = function (app) {
     },
     id_location: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     },
     id_device: {
       type: DataTypes.INTEGER,
@@ -64,7 +65,7 @@ module.exports = function (app) {
     inventory.belongsTo(models.devices, {
       foreignKe: 'id_device',
       targetKey: 'id'
-    });  inventory.belongsTo(models.users, {
+    }); inventory.belongsTo(models.users, {
       foreignKe: 'id_user',
       targetKey: 'id'
     });

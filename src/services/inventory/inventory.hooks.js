@@ -1,6 +1,19 @@
+const { authenticate } = require('@feathersjs/authentication').hooks;
 const isAdmin = require('../../hooks/is-admin');
 
-const { authenticate } = require('@feathersjs/authentication').hooks;
+const handleUser = () => {
+  return async context => {
+    const { params } = context;
+    const { user } = params;
+
+    Object.assign(context.data, {
+      id_user: user.id,
+      user_modified: user.id
+    });
+
+    return context;
+  };
+};
 
 
 module.exports = {
@@ -10,6 +23,7 @@ module.exports = {
     get: [],
     create: [
       authenticate('jwt'),
+      handleUser(),
       isAdmin()
     ],
     update: [],
