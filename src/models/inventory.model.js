@@ -6,14 +6,47 @@ const DataTypes = Sequelize.DataTypes;
 module.exports = function (app) {
   const sequelizeClient = app.get('sequelizeClient');
   const inventory = sequelizeClient.define('inventory', {
-    name: {
+    // name: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    //   unique: {
+    //     args: true,
+    //     msg: 'item telah terdaftar'
+    //   }
+    // },
+    hostname: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: {
-        args: true,
-        msg: 'item telah terdaftar'
-      }
+      allowNull: false
     },
+    mac_address: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    ip_address: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    status: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    user_modified: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    id_location: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    id_device: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    id_user: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+
   }, {
     hooks: {
       beforeCount(options) {
@@ -24,8 +57,17 @@ module.exports = function (app) {
 
   // eslint-disable-next-line no-unused-vars
   inventory.associate = function (models) {
-    // Define associations here
-    // See https://sequelize.org/master/manual/assocs.html
+    inventory.belongsTo(models.location, {
+      foreignKe: 'id_location',
+      targetKey: 'id'
+    });
+    inventory.belongsTo(models.devices, {
+      foreignKe: 'id_device',
+      targetKey: 'id'
+    });  inventory.belongsTo(models.users, {
+      foreignKe: 'id_user',
+      targetKey: 'id'
+    });
   };
 
   return inventory;

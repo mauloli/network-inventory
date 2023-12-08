@@ -5,12 +5,8 @@ const DataTypes = Sequelize.DataTypes;
 
 module.exports = function (app) {
   const sequelizeClient = app.get('sequelizeClient');
-  const location = sequelizeClient.define('location', {
-    lokasi: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    room: {
+  const type = sequelizeClient.define('type', {
+    type: {
       type: DataTypes.STRING,
       allowNull: false
     }
@@ -23,10 +19,10 @@ module.exports = function (app) {
   });
 
   // eslint-disable-next-line no-unused-vars
-  location.associate = function (models) {
+  type.associate = function (models) {
     // Define associations here
     // See https://sequelize.org/master/manual/assocs.html
   };
 
-  return location;
+  return type;
 };

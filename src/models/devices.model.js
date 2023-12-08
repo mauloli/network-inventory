@@ -5,15 +5,19 @@ const DataTypes = Sequelize.DataTypes;
 
 module.exports = function (app) {
   const sequelizeClient = app.get('sequelizeClient');
-  const location = sequelizeClient.define('location', {
-    lokasi: {
+  const devices = sequelizeClient.define('devices', {
+    name: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    room: {
+    brand: {
       type: DataTypes.STRING,
       allowNull: false
-    }
+    },
+    id_type: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
   }, {
     hooks: {
       beforeCount(options) {
@@ -23,10 +27,12 @@ module.exports = function (app) {
   });
 
   // eslint-disable-next-line no-unused-vars
-  location.associate = function (models) {
-    // Define associations here
-    // See https://sequelize.org/master/manual/assocs.html
+  devices.associate = function (models) {
+    devices.belongsTo(models.type, {
+      foreginKey: 'id_type',
+      targetKey: 'id'
+    });
   };
 
-  return location;
+  return devices;
 };

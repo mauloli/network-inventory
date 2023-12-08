@@ -48,18 +48,18 @@ module.exports = function (app) {
 
   // eslint-disable-next-line no-unused-vars
   inventoryBrand.associate = function (models) {
-    inventoryBrand.belongsTo(models.brand, {
-      foreignKey: 'brand_id',
-      targetKey: 'id'
-    });
-    inventoryBrand.belongsTo(models.inventory, {
-      foreignKey: 'inventory_id',
-      targetKey: 'id'
-    });
-    inventoryBrand.belongsTo(models.location, {
-      foreignKey: 'location_id',
-      targetKey: 'id'
-    });
+    // inventoryBrand.belongsTo(models.brand, {
+    //   foreignKey: 'brand_id',
+    //   targetKey: 'id'
+    // });
+    // inventoryBrand.belongsTo(models.inventory, {
+    //   foreignKey: 'inventory_id',
+    //   targetKey: 'id'
+    // });
+    // inventoryBrand.belongsTo(models.location, {
+    //   foreignKey: 'location_id',
+    //   targetKey: 'id'
+    // });
     // Define associations here
     // See https://sequelize.org/master/manual/assocs.html
   };
