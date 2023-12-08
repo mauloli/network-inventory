@@ -1,5 +1,7 @@
 // Application hooks that run for every service
+const { authenticate } = require('@feathersjs/authentication').hooks;
 
+const isAdmin = require('./hooks/is-admin');
 const log = require('./hooks/log');
 
 module.exports = {
@@ -7,10 +9,17 @@ module.exports = {
     all: [log()],
     find: [],
     get: [],
-    create: [],
+    create: [
+      authenticate('jwt')
+    ],
     update: [],
-    patch: [],
-    remove: []
+    patch: [
+      authenticate('jwt')
+    ],
+    remove: [
+      authenticate('jwt'),
+      isAdmin()
+    ]
   },
 
   after: {

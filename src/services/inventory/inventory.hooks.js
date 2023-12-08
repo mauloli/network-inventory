@@ -1,4 +1,5 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
+const { disablePagination } = require('feathers-hooks-common');
 const isAdmin = require('../../hooks/is-admin');
 
 const handleUser = () => {
@@ -19,7 +20,9 @@ const handleUser = () => {
 module.exports = {
   before: {
     all: [],
-    find: [],
+    find: [
+      disablePagination(),
+    ],
     get: [],
     create: [
       authenticate('jwt'),
