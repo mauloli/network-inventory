@@ -46,10 +46,11 @@ module.exports = function (app) {
     operatorsAliases,
     define: {
       freezeTableName: true,
-      timestamps: true, 
+      timestamps: true,
       createdAt: 'created_at',
-      updatedAt: 'updated_at', 
-    }
+      updatedAt: 'updated_at',
+    },
+    timezone: '+07:00',
   });
 
   const oldSetup = app.setup;

@@ -20,7 +20,11 @@ module.exports = function (app) {
     },
     mac_address: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: {
+        args: true,
+        msg: 'mac address already used'
+      }
     },
     ip_address: {
       type: DataTypes.STRING,

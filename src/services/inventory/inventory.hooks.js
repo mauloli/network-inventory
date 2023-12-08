@@ -27,7 +27,10 @@ module.exports = {
       isAdmin()
     ],
     update: [],
-    patch: [],
+    patch: [
+      authenticate('jwt'),
+      handleUser(),
+    ],
     remove: []
   },
 
