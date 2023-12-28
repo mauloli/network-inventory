@@ -29,7 +29,7 @@ module.exports = function (app) {
   // eslint-disable-next-line no-unused-vars
   devices.associate = function (models) {
     devices.belongsTo(models.type, {
-      foreginKey: 'id_type',
+      foreignKey: 'id_type',
       targetKey: 'id'
     });
   };
