@@ -7,7 +7,7 @@ const log = require('./hooks/log');
 
 const pathAuthentication = () => {
   return async context => {
-    if (context.path == 'authentication') {
+    if (context.path == 'authentication'||context.path == 'users') {
       return true;
     }
     return false;

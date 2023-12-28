@@ -16,12 +16,32 @@ const handleUser = () => {
   };
 };
 
+const includeDevice = () => {
+  return async context => {
+    const { app } = context;
+    const sequelize = app.get('sequelizeClient');
+    const { devices } = sequelize.models;
+
+    const include = [devices];
+
+    Object.assign(context.params, {
+      sequelize: {
+        include,
+        raw: false
+      }
+    });
+    
+    return context;
+  };
+};
+
 
 module.exports = {
   before: {
     all: [],
     find: [
       disablePagination(),
+      includeDevice()
     ],
     get: [],
     create: [
