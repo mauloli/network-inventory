@@ -1,6 +1,7 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
 const { disablePagination } = require('feathers-hooks-common');
 const isAdmin = require('../../hooks/is-admin');
+const generateQrcode = require('../../hooks/generate-qrcode');
 
 const handleUser = () => {
   return async context => {
@@ -20,9 +21,12 @@ const includeDevice = () => {
   return async context => {
     const { app } = context;
     const sequelize = app.get('sequelizeClient');
-    const { devices } = sequelize.models;
+    const { devices, type, location } = sequelize.models;
 
-    const include = [devices];
+    const include = [
+      { model: devices, include: [type] },
+      { model: location }
+    ];
 
     Object.assign(context.params, {
       sequelize: {
@@ -30,7 +34,7 @@ const includeDevice = () => {
         raw: false
       }
     });
-    
+
     return context;
   };
 };
@@ -47,7 +51,7 @@ module.exports = {
     create: [
       authenticate('jwt'),
       handleUser(),
-      isAdmin()
+      isAdmin(),
     ],
     update: [],
     patch: [
@@ -61,7 +65,9 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [
+      generateQrcode(),
+    ],
     update: [],
     patch: [],
     remove: []

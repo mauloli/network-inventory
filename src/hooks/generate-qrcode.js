@@ -1,24 +1,20 @@
-
 const qr = require('qrcode');
+const fs = require('fs');
+const path = require('path');
+
 module.exports = () => {
   return async context => {
     const { result, app } = context;
     const { id } = result;
+    const qrCodeData = `${id}`;
+
+    const qrCodeImageBuffer = await qr.toBuffer(qrCodeData);
 
     const timeStamp = Date.now();
-    const fileName = `qrCode${timeStamp}`;
+    const fileName = `qrCode${timeStamp}.png`;
+    const filePath = path.join(__dirname, '..', '..', 'public', fileName);
 
-    try {
-      await qr.toFile(`public/${fileName}.png`, id);
-
-      const updateQr = await app.service('inventory-brand')._patch(id, {
-        qr_image: `${fileName}.png`
-      });
-
-      context.result = updateQr;
-    } catch (error) {
-      console.error('Gagal membuat dan menyimpan QR code:', error);
-    }
+    fs.writeFileSync(filePath, qrCodeImageBuffer);
 
     return context;
   };
