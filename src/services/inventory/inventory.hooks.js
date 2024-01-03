@@ -47,7 +47,9 @@ module.exports = {
       disablePagination(),
       includeDevice()
     ],
-    get: [],
+    get: [
+      includeDevice()
+    ],
     create: [
       authenticate('jwt'),
       handleUser(),
