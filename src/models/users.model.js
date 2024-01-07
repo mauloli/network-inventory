@@ -11,6 +11,9 @@ module.exports = function (app) {
       allowNull: true,
       unique: true
     },
+    name: {
+      type: DataTypes.STRING,
+    },
     password: {
       type: DataTypes.STRING,
       allowNull: false

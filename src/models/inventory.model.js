@@ -64,14 +64,17 @@ module.exports = function (app) {
   inventory.associate = function (models) {
     inventory.belongsTo(models.location, {
       foreignKey: 'id_location',
-      targetKey: 'id'
+      targetKey: 'id',
+      onDelete: 'cascade',
     });
     inventory.belongsTo(models.devices, {
       foreignKey: 'id_device',
-      targetKey: 'id'
+      targetKey: 'id',
+      onDelete: 'cascade',
     }); inventory.belongsTo(models.users, {
       foreignKey: 'id_user',
-      targetKey: 'id'
+      targetKey: 'id',
+      onDelete: 'cascade',
     });
   };
 
