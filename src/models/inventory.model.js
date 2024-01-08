@@ -30,6 +30,9 @@ module.exports = function (app) {
       type: DataTypes.STRING,
       allowNull: false
     },
+    image: {
+      type: DataTypes.STRING,
+    },
     status: {
       type: DataTypes.STRING,
       allowNull: false,
