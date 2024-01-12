@@ -16,6 +16,11 @@ module.exports = () => {
 
     fs.writeFileSync(filePath, qrCodeImageBuffer);
 
+    await app.service('inventory').Model.update(
+      { image: fileName },
+      { where: { id } }
+    );
+    
     return context;
   };
 };
