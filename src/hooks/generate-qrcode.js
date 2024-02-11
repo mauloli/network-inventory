@@ -15,7 +15,7 @@ module.exports = () => {
     let encryptedNumber = cipher.update(String(id), 'utf-8', 'hex');
     encryptedNumber += cipher.final('hex');
 
-    const url = `https://lxwg0xmh-3000.asse.devtunnels.ms/inventory/${encryptedNumber}`;
+    const url = `https://kslsqwb8-3000.asse.devtunnels.ms/inventory/${encryptedNumber}`;
     console.log(url)
     const qrCodeData = url;
 
