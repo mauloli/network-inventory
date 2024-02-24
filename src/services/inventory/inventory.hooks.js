@@ -53,7 +53,7 @@ module.exports = {
     create: [
       authenticate('jwt'),
       handleUser(),
-      isAdmin(),
+      // isAdmin(),
     ],
     update: [],
     patch: [
